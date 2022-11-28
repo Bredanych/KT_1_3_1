@@ -23,7 +23,8 @@ fun agoToText(time: Int): String {
 fun minuteText(time: Int): String {
 
     return when {
-        time % 60 % 10 == 1 && time % 60 != 11 -> (time/60).toString()+" Минуту назад"
+        time / 60 % 10 in 2..4 -> (time/60).toString()+" Минуты назад"
+        time / 60 % 10 == 1 && time % 60 != 11 -> (time/60).toString()+" Минуту назад"
         else -> (time/60).toString()+" Минут назад"
     }
 
@@ -32,7 +33,8 @@ fun minuteText(time: Int): String {
 fun hourText(time: Int): String {
 
     return when {
-        time % (60*60) % 10 == 1 && time % (60*60) != 11 -> (time/60).toString()+" Час назад"
+        time / (60*60) % 10 in 2..4 -> (time/60).toString()+" Часа назад"
+        time / (60*60) % 10 == 1 && time % (60*60) != 11 -> (time/60).toString()+" Час назад"
         else -> (time/(60*60)).toString()+" Часов назад"
     }
 
